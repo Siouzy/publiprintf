@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/29 18:28:50 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2018/02/23 18:08:57 by srepelli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/02/26 13:12:18 by srepelli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -81,11 +81,9 @@ int		ft_space(t_spec *sp, intmax_t arg, int len)
 	if ((!sp->largmin && arg >= 0) || ft_countchar(sp->attrib, '-'))
 	{
 		write(1, " ", 1);
-		return (ft_countchar(sp->attrib, '-') ? 0 : 1);
+		return (1);
 	}
-	if (sp->isprec && sp->precis > len)
-		len = sp->precis;
-	if (j < sp->largmin - len)
+	if (j <= sp->largmin - len)
 	{
 		write(1, " ", 1);
 		j++;
@@ -101,7 +99,7 @@ int		ft_plus(t_spec *sp, intmax_t arg, int len)
 		((ft_countchar(sp->attrib, '0') && len < sp->largmin) ||
 		sp->precis > len) && arg >= 0)
 		return (0);
-	if (arg >= 0 && arg < 2147483647)
+	if (arg >= 0 && sp->indic != 'u')
 	{
 		write(1, "+", 1);
 		return (1);

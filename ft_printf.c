@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/21 16:57:06 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2018/02/24 17:13:27 by srepelli    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/02/26 13:12:32 by srepelli    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -166,6 +166,7 @@ int		ft_printf(const char *format, ...)
 			ft_n(sp, va_arg(va, intmax_t*), ret + i - k);
 		ft_strdel(&sp->attrib);
 		ft_strdel(&sp->taille);
+		free(sp);
 	}
 	ft_putstr(format + j);
 	ret = ret + i - k;
@@ -175,14 +176,10 @@ int		ft_printf(const char *format, ...)
 
 /*int		main(void)
 {
-//	setlocale(LC_ALL, "")
-	int i;
+//	setlocale(LC_ALL, "");
 
-	i = 0;
-	printf("\nret1 = %d\n", printf("%dcoucou%n", 555, &i));
-	printf("i = %d\n", i);
-	printf("\nret2 = %d\n", ft_printf("%dcoucou%n", 555, &i));
-	printf("i = %d\n", i);
+	printf("\nret1 = %d\n", printf("% *.5i", 2, 42));
+	printf("\nret2 = %d\n", ft_printf("% *.5i", 2, 42));
 	//	printf("\nret1 = %d\n", printf("%C", 0x81000));
 	//	printf("\nret2 = %d\n", ft_printf("%C", 0x81000));
 	return (0);
